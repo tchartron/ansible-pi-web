@@ -1,0 +1,5 @@
+---
+- name: install utils
+  become: yes
+  become_method: sudo
+  apt: name=git state=latest
