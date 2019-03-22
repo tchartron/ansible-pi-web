@@ -1,0 +1,11 @@
+---
+- name: Install a pi web with nginx mariadb php-fpm and utils like
+  hosts: web
+  remote_user: pi
+  vars:
+    domain: laravel.work
+
+  roles:
+    - utils
+    - nginx
+...

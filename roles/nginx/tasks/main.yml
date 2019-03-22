@@ -1,0 +1,17 @@
+---
+- name: install nginx
+  become: yes
+  become_method: sudo
+  apt: name=nginx state=latest
+
+- name: Start and enable
+  become: yes
+  become_method: sudo
+  service: name=nginx state=started enabled=yes
+
+- name: Delete default configuration
+  become: yes
+  become_method: sudo
+  file: path=/etc/nginx/site-enabled/default state=absent
+  notify: restart nginx
+...
