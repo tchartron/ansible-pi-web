@@ -18,5 +18,5 @@
 - name: Create user folder
   become: yes
   become_method: sudo
-  file: /home/{{ user }}/{{ domain }}
+  file: path=/home/{{ user }}/www/{{ domain }}
 ...
