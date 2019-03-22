@@ -14,4 +14,9 @@
   become_method: sudo
   file: path=/etc/nginx/site-enabled/default state=absent
   notify: restart nginx
+
+- name: Create user folder
+  become: yes
+  become_method: sudo
+  file: /home/{{ user }}/{{ domain }}
 ...

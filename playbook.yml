@@ -3,6 +3,7 @@
   hosts: web
   remote_user: pi
   vars:
+    user: pi
     domain: laravel.work
 
   roles:
