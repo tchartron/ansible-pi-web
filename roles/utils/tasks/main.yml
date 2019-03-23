@@ -1,5 +1,10 @@
 ---
-- name: install utils
+- name: install git
   become: yes
   become_method: sudo
   apt: name=git state=latest
+
+- name: install zsh
+  become: yes
+  become_method: sudo
+  apt: name=zsh state=latest
