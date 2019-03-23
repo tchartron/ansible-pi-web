@@ -1,0 +1,21 @@
+---
+- name: Create user working folder
+  become: yes
+  become_method: sudo
+  file: path=/home/{{ user }}/www/{{ item }} state=directory owner={{ user }} group={{ user }}
+
+- name: Symlink to www
+  become: yes
+  become_method: sudo
+  file: src=/home/{{ user }}/www/{{ item }} dest=/var/www/{{ item }} state=link
+
+- name: Nginx server block
+  become: yes
+  become_method: sudo
+  template: templates/nginx.j2 dest=/etc/nginx/sites-available/{{ item }}
+
+-name: Activate domain {{ item }}
+  become: yes
+  become_method: sudo
+  file: src=/etc/nginx/sites-availble/{{ item }} dest=/etc/nginx/sites-enabled/{{ item }} state=link
+  notify: restart nginx
