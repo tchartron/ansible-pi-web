@@ -15,8 +15,15 @@
   file: path=/etc/nginx/site-enabled/default state=absent
   notify: restart nginx
 
-- name: Create user folder
+- name: Create user working folder
   become: yes
   become_method: sudo
-  file: path=/home/{{ user }}/www/{{ domain }}
+  file: path=/home/{{ user }}/www/{{ domain }} state=directory owner={{ user }} group={{ user }}
+
+- name: Symlink to www
+  become: yes
+  become_method: sudo
+  file: src=/home/{{ user }}/www/{{ domain }} dest=/var/www/{{ domain }} state=link
+
+- name: Nginx server block
 ...
