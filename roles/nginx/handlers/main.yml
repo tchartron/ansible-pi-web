@@ -4,4 +4,3 @@
 
 - name: reload nginx
   service: name=nginx state=reloaded
-...

@@ -4,7 +4,9 @@
   remote_user: pi
   vars:
     user: pi
-    domain: laravel.work
+    domains: l
+    - laravel.work
+    #- other.work
 
   roles:
     - utils
