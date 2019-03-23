@@ -14,4 +14,11 @@
   become_method: sudo
   file: path=/etc/nginx/site-enabled/default state=absent
   notify: restart nginx
-  with_items: domain
+
+  -name: Sites configuration
+  become: yes
+  become_method: sudo
+  include: sites.yml
+  with_items: domains
+
+
