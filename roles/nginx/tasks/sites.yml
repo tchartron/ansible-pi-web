@@ -13,9 +13,13 @@
   become: yes
   become_method: sudo
   template: src=templates/nginx.j2 dest=/etc/nginx/sites-available/{{ item }}
+  notify: restart nginx
 
 - name: Activate domain {{ item }}
   become: yes
   become_method: sudo
   file: src=/etc/nginx/sites-available/{{ item }} dest=/etc/nginx/sites-enabled/{{ item }} state=link
   notify: restart nginx
+
+# - name: Editing local hosts file to go to server (we'll see to use the dns to register the domain later)
+

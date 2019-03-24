@@ -1,11 +1,11 @@
 server {
-    server-name www.{{ item }};
+    server_name www.{{ item }};
     return 301 $scheme://{{ item }}$request_uri;
 }
 
 server {
     listen 80;
-    server-name {{ item }};
+    server_name {{ item }};
     root /var/www/{{ item }};
 
     index index.html index.php;
