@@ -12,10 +12,10 @@
 - name: Nginx server block
   become: yes
   become_method: sudo
-  template: templates/nginx.j2 dest=/etc/nginx/sites-available/{{ item }}
+  template: src=templates/nginx.j2 dest=/etc/nginx/sites-available/{{ item }}
 
--name: Activate domain {{ item }}
+- name: Activate domain {{ item }}
   become: yes
   become_method: sudo
-  file: src=/etc/nginx/sites-availble/{{ item }} dest=/etc/nginx/sites-enabled/{{ item }} state=link
+  file: src=/etc/nginx/sites-available/{{ item }} dest=/etc/nginx/sites-enabled/{{ item }} state=link
   notify: restart nginx

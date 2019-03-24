@@ -15,10 +15,10 @@
   file: path=/etc/nginx/site-enabled/default state=absent
   notify: restart nginx
 
-  -name: Sites configuration
+- name: Sites configuration
   become: yes
   become_method: sudo
   include: sites.yml
-  with_items: domains
+  with_items: "{{ domains }}"
 
 

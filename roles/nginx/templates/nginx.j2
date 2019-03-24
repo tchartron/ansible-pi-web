@@ -6,7 +6,7 @@ server {
 server {
     listen 80;
     server-name {{ item }};
-    root /var/www/{{ item }}/public;
+    root /var/www/{{ item }};
 
     index index.html index.php;
 }
