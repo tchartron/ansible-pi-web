@@ -21,5 +21,13 @@
   file: src=/etc/nginx/sites-available/{{ item }} dest=/etc/nginx/sites-enabled/{{ item }} state=link
   notify: restart nginx
 
+# Can't do this on local machine it will do it on connected host .... see later if it's possible ...
 # - name: Editing local hosts file to go to server (we'll see to use the dns to register the domain later)
+#   lineinfile: path=/etc/hosts line={{ hostvars['web'].ansible_host }}
+#     path: /etc/hosts
+#     #regexp: '^127\.0\.0\.1'
+#     line: '127.0.0.1 localhost'
+#     owner: root
+#     group: root
+#     mode: 0644
 
