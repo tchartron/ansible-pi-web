@@ -12,6 +12,7 @@
     - utils
     - nginx
 
+#MAybe make this a role later
 - name: Edit local hosts file for the domain to work
   # hosts: 127.0.0.1
   hosts: localhost

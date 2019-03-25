@@ -8,3 +8,10 @@
   become: yes
   become_method: sudo
   apt: name=zsh state=latest
+
+- name: Change the default shell of user pi to zsh
+  become: yes
+  become_method: sudo
+  user:
+    name: pi
+    shell: /usr/bin/zsh
