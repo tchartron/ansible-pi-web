@@ -20,7 +20,6 @@
   - name: Editing local hosts file to go to server (we'll see to use the dns to register the domain later)
     become: yes
     become_method: sudo
-    # ansible_sbecome_pass: Samoht07 # launching with : ansible-playbook -i hosts playbook.yml --ask-become-pass
     lineinfile: path="/etc/hosts" line="{{ hostvars['piweb'].ansible_host }}\tlaravel.work"
     # with_items: "{{ domains }}"
       # path: /etc/hosts
