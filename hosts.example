@@ -1,2 +1,4 @@
 [web]
 piweb ansible_host=192.168.0.30 ansible_port=39999 ansible_user=pi
+[local]
+localhost ansible_connection=local ansible_become_pass=XXXXX
