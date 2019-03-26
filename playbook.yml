@@ -4,7 +4,7 @@
   remote_user: pi
   vars:
     user: pi
-    # domains:
+    # domains: #now defined in group
     # - laravel.work
     #- other.work
 
