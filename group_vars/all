@@ -1,0 +1,3 @@
+#Domains var accessible by both 'web' group and 'local' group
+domains:
+  - laravel.work

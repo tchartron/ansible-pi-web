@@ -4,29 +4,17 @@
   remote_user: pi
   vars:
     user: pi
-    domains:
-    - laravel.work
+    # domains:
+    # - laravel.work
     #- other.work
 
   roles:
     - utils
     - nginx
 
-#MAybe make this a role later
 - name: Edit local hosts file for the domain to work
-  # hosts: 127.0.0.1
   hosts: localhost
-  # connection: local
-  tasks:
-  - name: Editing local hosts file to go to server (we'll see to use the dns to register the domain later)
-    become: yes
-    become_method: sudo
-    lineinfile: path="/etc/hosts" line="{{ hostvars['piweb'].ansible_host }}\tlaravel.work"
-    # with_items: "{{ domains }}"
-      # path: /etc/hosts
-      #regexp: '^127\.0\.0\.1'
-      # line: '127.0.0.1 localhost'
-      # owner: root
-      # group: root
-      # mode: 0644
+
+  roles:
+    - local
 ...
