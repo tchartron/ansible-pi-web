@@ -2,7 +2,7 @@
 - name: install nginx
   become: yes
   become_method: sudo
-  apt: name=nginx state=latest
+  apt: name=nginx state=latest update_cache=true
 
 - name: Start and enable
   become: yes
