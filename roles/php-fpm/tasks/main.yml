@@ -1,13 +1,14 @@
 ---
-- name: Add PPA Repository
-  become: yes
-  become_method: sudo
-  apt_repository: repo={{ php_ppa }}
+# We do not add ppa because we are not in debian but in raspbian and ppa ondrej/php does not seem to be supported
+# - name: Add PPA Repository
+#   become: yes
+#   become_method: sudo
+#   apt_repository: repo={{ php_ppa }}
 
-- name: Apt update
-  become: yes
-  become_method: sudo
-  apt: update_cache=yes
+# - name: Apt update
+#   become: yes
+#   become_method: sudo
+#   apt: update_cache=yes
 
 - name: Install PHP
   become: yes
@@ -15,6 +16,7 @@
 
 - name: Install PHP Packages
   become: yes
+  become_method: sudo
   apt: name={{ item }} state=latest
   with_items: "{{ php_packages }}"
   when: php_packages is defined
