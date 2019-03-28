@@ -1,0 +1,27 @@
+---
+- name: Add PPA Repository
+  become: yes
+  become_method: sudo
+  apt_repository: repo={{ php_ppa }}
+
+- name: Apt update
+  become: yes
+  become_method: sudo
+  apt: update_cache=yes
+
+- name: Install PHP
+  become: yes
+  apt: name=php{{ php_version }} state=latest
+
+- name: Install PHP Packages
+  become: yes
+  apt: name={{ item }} state=latest
+  with_items: "{{ php_packages }}"
+  when: php_packages is defined
+  notify:
+    - restart php-fpm
+
+- name: Start and enable php-fpm
+  become: yes
+  become_method: sudo
+  service: name=php{{ php_version }}-fpm state=started enabled=yes
