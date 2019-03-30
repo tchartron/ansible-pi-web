@@ -1,4 +1,5 @@
 ---
+#Can be overidden in a /vars/main.yml file in role or in /host_vars /group_vars or directly in vars section of playbook
 php_ppa: "ppa:ondrej/php"
 php_version: "7.0"
 php_packages:
