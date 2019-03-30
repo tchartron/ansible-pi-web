@@ -39,3 +39,12 @@ Pulls a git repository to set up the web app
 ## Set up
     cp hosts.example hosts
 Edit 'hosts' file with your desired hosts and your local sudo password to allow editing the local /etc/hosts file to access nginx server block from local host (the one that runs ansible playbook)
+
+## Improvements for the future
+ [ ] Add option for which repo to pull
+ [ ] Add a laravel version option
+ [ ] Make it compatible with ArchLinux / Manjaro
+ [ ] Add option to wether use php or not (static website)
+ [ ] Add option to wether use mariaDB or not (static website)
+ [ ] Add composer installation task
+ [ ] Add Laravel utils like generating app key, migrating database, ...
