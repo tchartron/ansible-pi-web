@@ -27,3 +27,9 @@
   become: yes
   become_method: sudo
   service: name=php{{ php_version }}-fpm state=started enabled=yes
+
+  # Configuration
+- name: Php FPM and CLI configuration
+  become: yes
+  become_method: sudo
+  include: configuration.yml
