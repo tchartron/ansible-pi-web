@@ -20,7 +20,7 @@ php_packages:
   - php{{ php_version }}-xml
   - php{{ php_version }}-zip
 
-php_timezone: Europe/London
+php_timezone: Europe/Paris
 php_upload_max_filesize: "20M"
 php_post_max_size: "20M"
 php_memory_limit: "1024M"
