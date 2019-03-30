@@ -66,7 +66,7 @@
 
   #Remove the test database
   - name: Removes the MySQL test database
-    mysql_db: db=test state=absent
+    mysql_db: name=test state=absent
 
 
 
