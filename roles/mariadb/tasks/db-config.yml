@@ -1,0 +1,9 @@
+#create username and new password
+- mysql_user:
+  name: "{{mariadb_username}}"
+  password: "{{mariadb_password}}"
+  priv: '*.*:ALL'
+  state: present
+
+- name:  Create APP database
+mysql_db: name="{{mariadb_database_name}}" state=present login_user="{{mariadb_username}}" login_password="{{mariadb_password}}"

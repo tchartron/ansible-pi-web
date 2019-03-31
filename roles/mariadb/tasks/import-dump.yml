@@ -1,0 +1,11 @@
+---
+# copy the dump and import it to db
+- name: Copy database over
+  copy: src=../files/dump.sql dest=/tmp/dump.sql
+  tags:
+    - mysql-config
+######
+- name: Import data
+  mysql_db: name="{{mariadb_database_name}}" state=import target=/tmp/dump.sql login_user="{{mariadb_username}}" login_password="{{mariadb_password}}"
+  tags:
+    - mysql-config
