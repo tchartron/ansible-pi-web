@@ -17,8 +17,8 @@
 - name: Install PHP Packages
   become: yes
   become_method: sudo
-  apt: name={{ item }} state=latest
-  with_items: "{{ php_packages }}"
+  apt: name="{{ php_packages }}" state=latest
+  # with_items: "{{ php_packages }}" #deprecated
   when: php_packages is defined
   notify:
     - restart php-fpm
