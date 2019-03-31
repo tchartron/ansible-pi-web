@@ -40,43 +40,44 @@
   # See https://stackoverflow.com/questions/25136498/ansible-answers-to-mysql-secure-installation
 
   #Install MySQLdb Python package for ansible to be able to run queries ansible is python
-  - name: Adds Python MySQL support on Debian/Ubuntu
-    apt: pkg="python-mysqldb" state=present
-    when: ansible_os_family == 'Debian'
+- name: Adds Python MySQL support on Debian/Ubuntu
+  apt: pkg="python-mysqldb" state=present
+  when: ansible_os_family == 'Debian'
 
-  - name: Adds Python MySQL support on RedHat/CentOS
-    yum: name=MySQL-python state=present
-    when: ansible_os_family == 'RedHat'
-  #Set root password
-  - name: Sets the root password
-    mysql_user: user=root password="{{ mysql_root_password }}" host=localhost
+- name: Adds Python MySQL support on RedHat/CentOS
+  yum: name=MySQL-python state=present
+  when: ansible_os_family == 'RedHat'
+#Set root password
+- name: Sets the root password
+  mysql_user: user=root password="{{ mariadb_root_password }}" host=localhost
 
-  #Remove anonymous users
-  - name: Deletes anonymous MySQL server user for ansible_fqdn
-    # mysql_user: user="" host="{{ ansible_fqdn }}" state="absent"
-    mysql_user: user="" host_all=yes state="absent"
+#Remove anonymous users
+- name: Deletes anonymous MySQL server user for ansible_fqdn
+  # mysql_user: user="" host="{{ ansible_fqdn }}" state="absent"
+  mysql_user: user="" host_all=yes state="absent"
 
-  # - name: Deletes anonymous MySQL server user for localhost
-  #   mysql_user: user="" state="absent"
+# - name: Deletes anonymous MySQL server user for localhost
+#   mysql_user: user="" state="absent"
 
-  #Remove root remote access
-  - name: Secures the MySQL root user for IPV6 localhost (::1)
-    mysql_user: user="root" password="{{ mysql_root_password }}" host="::1"
+#Remove root remote access
+- name: Secures the MySQL root user for IPV6 localhost (::1)
+  mysql_user: user="root" password="{{ mariadb_root_password }}" host="::1"
 
-  - name: Secures the MySQL root user for IPV4 localhost (127.0.0.1)
-    mysql_user: user="root" password="{{ mysql_root_password }}" host="127.0.0.1"
+- name: Secures the MySQL root user for IPV4 localhost (127.0.0.1)
+  mysql_user: user="root" password="{{ mariadb_root_password }}" host="127.0.0.1"
 
-  - name: Secures the MySQL root user for localhost domain (localhost)
-    mysql_user: user="root" password="{{ mysql_root_password }}" host="localhost"
+- name: Secures the MySQL root user for localhost domain (localhost)
+  mysql_user: user="root" password="{{ mariadb_root_password }}" host="localhost"
 
-  - name: Secures the MySQL root user for server_hostname domain
-    mysql_user: user="root" password="{{ mysql_root_password }}" host="{{ ansible_fqdn }}"
+- name: Secures the MySQL root user for server_hostname domain
+  mysql_user: user="root" password="{{ mariadb_root_password }}" host="{{ ansible_fqdn }}"
 
-  #Remove the test database
-  - name: Removes the MySQL test database
-    mysql_db: name=test state=absent
+#Remove the test database
+- name: Removes the MySQL test database
+  mysql_db: name=test state=absent
 
-
+- name: Create user and initialize app database
+  include: db-config.yml
 
 # ------------------------#
 # VERSION 2 more explicit #
@@ -92,7 +93,7 @@
 # # FLUSH PRIVILEGES;
 
 # - name: Set root Password
-#   mysql_user: login_password={{ mysql_root_password }} check_implicit_admin=yes name=root host={{ item }} password={{ mysql_root_password }} state=present
+#   mysql_user: login_password={{ mariadb_root_password }} check_implicit_admin=yes name=root host={{ item }} password={{ mariadb_root_password }} state=present
 #   with_items:
 #     - localhost
 #     - 127.0.0.1
