@@ -11,7 +11,7 @@ See the "Installed package section for details"
     - Ansible
 
 ## Installed packages
-```
+```shell
 - GIT
 - ZSH (and changed to default shell for user 'pi')
 - Oh My Zsh
@@ -38,7 +38,7 @@ See the "Installed package section for details"
     - json
     - xml
     - zip
-```shell
+```
 
 ## Set up
 `cp hosts.example hosts`  
