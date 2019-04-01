@@ -53,3 +53,4 @@ Edit `hosts` file with your desired hosts and your local sudo password to allow 
  - [ ] Add composer installation tasks
  - [ ] Add Laravel utils like generating app key, migrating database, ...
  - [ ] Add Adminer
+ - [ ] Improve nginx server block template
