@@ -1,6 +1,7 @@
 ---
 #Can be overidden in a /vars/main.yml file in role or in /host_vars /group_vars or directly in vars section of playbook
-mariadb_root_password: "XXXXXXX"
+mariadb_root_username: "root"
+mariadb_root_password: "root"
 
 mariadb_username: "thomas"
 mariadb_password: "thomas"
