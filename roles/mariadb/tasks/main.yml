@@ -27,7 +27,7 @@
   service: name=mariadb state=started enabled=yes
 
   #Install MySQLdb Python package for ansible to be able to run queries ansible is python
-- name: Adds Python MySQL support on Debian/Ubuntu
+- name: Adds Python MySQL support on Debian
   become: yes
   become_method: sudo
   apt: name=python-mysqldb state=latest
