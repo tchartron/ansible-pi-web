@@ -11,32 +11,34 @@ See the "Installed package section for details"
     - Ansible
 
 ## Installed packages
-    - GIT
-    - ZSH (and changed to default shell for user 'pi')
-    - Oh My Zsh
-    - Nginx
-    - Php-fpm
-    - MariaDB
-    - Composer
+```
+- GIT
+- ZSH (and changed to default shell for user 'pi')
+- Oh My Zsh
+- Nginx
+- Php-fpm
+- MariaDB
+- Composer
 
-    - Default php packages list :
-        - common
-        - cli
-        - intl
-        - imagick
-        - imap
-        - curl
-        - cgi
-        - fpm
-        - mysql
-        - gd
-        - mbstring
-        - mcrypt
-        - memcached
-        - apcu
-        - json
-        - xml
-        - zip
+- Default php packages list :
+    - common
+    - cli
+    - intl
+    - imagick
+    - imap
+    - curl
+    - cgi
+    - fpm
+    - mysql
+    - gd
+    - mbstring
+    - mcrypt
+    - memcached
+    - apcu
+    - json
+    - xml
+    - zip
+```shell
 
 ## Set up
 `cp hosts.example hosts`  
