@@ -1,12 +1,30 @@
 server {
-    server_name www.{{ item }};
-    return 301 $scheme://{{ item }}$request_uri;
+    server_name www.{{ item.domain }};
+    return 301 $scheme://{{ item.domain }}$request_uri;
 }
 
 server {
     listen 80;
-    server_name {{ item }};
-    root /var/www/{{ item }};
+    server_name {{ item.domain }};
+    root /var/www/{{ item.domain }};
 
-    index index.html index.php;
+    {% if item.php %}
+    index index.php index.html;
+
+    location ~ \.php$ {
+        try_files $uri =404;
+        fastcgi_pass unix:/run/php/php{{ php_version }}-fpm.sock;
+        fastcgi_index index.php;
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        include fastcgi_params;
+        # fastcgi_intercept_errors on;
+        # By all means use a different server for the fcgi processes if you need to
+    }
+
+    location / {
+        try_files $uri $uri/ /index.php?$query_string;
+    }
+    {% else %}
+    index index.html;
+    {% endif %}
 }
