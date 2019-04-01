@@ -1,5 +1,7 @@
 #create username and new password
 - name:  Create db user
+  become: yes
+  become_method: sudo
   mysql_user:
     name: "{{mariadb_username}}"
     password: "{{mariadb_password}}"
@@ -7,4 +9,8 @@
     state: present
 
 - name:  Create APP database
-  mysql_db: name="{{mariadb_database_name}}" state=present login_user="{{mariadb_username}}" login_password="{{mariadb_password}}"
+  mysql_db:
+    login_user: "{{mariadb_username}}"
+    login_password: "{{mariadb_password}}"
+    name: "{{mariadb_database_name}}"
+    state: present

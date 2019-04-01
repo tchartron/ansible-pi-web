@@ -12,6 +12,7 @@
     - utils
     - nginx
     - php-fpm
+    - mariadb
 
 - name: Edit local hosts file for the domain to work
   hosts: localhost

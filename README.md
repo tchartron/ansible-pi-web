@@ -52,3 +52,4 @@ Edit `hosts` file with your desired hosts and your local sudo password to allow 
  - [ ] Add option to whether use mariaDB or not (static website)
  - [ ] Add composer installation tasks
  - [ ] Add Laravel utils like generating app key, migrating database, ...
+ - [ ] Add Adminer
