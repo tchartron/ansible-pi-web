@@ -2,23 +2,23 @@
 - name: Create user working folder
   become: yes
   become_method: sudo
-  file: path=/home/{{ user }}/www/{{ item }} state=directory owner={{ user }} group={{ user }}
+  file: path=/home/{{ user }}/www/{{ item.domain }} state=directory owner={{ user }} group={{ user }}
 
 - name: Symlink to www
   become: yes
   become_method: sudo
-  file: src=/home/{{ user }}/www/{{ item }} dest=/var/www/{{ item }} state=link
+  file: src=/home/{{ user }}/www/{{ item.domain }} dest=/var/www/{{ item.domain }} state=link
 
 - name: Nginx server block
   become: yes
   become_method: sudo
-  template: src=templates/nginx.j2 dest=/etc/nginx/sites-available/{{ item }}
+  template: src=templates/nginx.j2 dest=/etc/nginx/sites-available/{{ item.domain }} force=yes
   notify: restart nginx
 
-- name: Activate domain {{ item }}
+- name: Activate domain {{ item.domain }}
   become: yes
   become_method: sudo
-  file: src=/etc/nginx/sites-available/{{ item }} dest=/etc/nginx/sites-enabled/{{ item }} state=link
+  file: src=/etc/nginx/sites-available/{{ item.domain }} dest=/etc/nginx/sites-enabled/{{ item.domain }} state=link
   notify: restart nginx
 
 # Can't do this on local machine it will do it on connected host .... see later if it's possible ...

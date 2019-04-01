@@ -12,13 +12,13 @@
 - name: Delete default configuration
   become: yes
   become_method: sudo
-  file: path=/etc/nginx/site-enabled/default state=absent
-  notify: restart nginx
+  file: path="/etc/nginx/sites-enabled/default" state=absent
+  # notify: restart nginx
 
 - name: Sites configuration
   become: yes
   become_method: sudo
   include: sites.yml
   with_items: "{{ domains }}"
-
+  notify: restart nginx
 

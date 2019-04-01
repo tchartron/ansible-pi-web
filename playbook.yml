@@ -4,8 +4,8 @@
   remote_user: pi
   vars:
     user: pi
-    php_version: "7.0"
-    # domains: #now defined in group
+    # php_version: "7.0" #now defined in group_vars
+    # domains: #now defined in group_vars
     # - laravel.work
     #- other.work
 
