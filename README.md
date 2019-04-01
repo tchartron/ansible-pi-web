@@ -1,8 +1,8 @@
 # ansible-pi-web
 
-Ansible playbook to set up a Debian or Raspbian system to host web apps\s
-Pulls the laravel repository to set up the new web app\s
-See the "Installed package section for details"\s
+Ansible playbook to set up a Debian or Raspbian system to host web apps  
+Pulls the laravel repository to set up the new web app  
+See the "Installed package section for details"  
 
 ## Required
     - A raspberry pi
@@ -39,7 +39,7 @@ See the "Installed package section for details"\s
         - zip
 
 ## Set up
-`cp hosts.example hosts`\s
+`cp hosts.example hosts`  
 Edit `hosts` file with your desired hosts and your local sudo password to allow editing the local /etc/hosts file to access nginx server block from the local host (the one that runs ansible playbook)
 
 ## Improvements ideas
