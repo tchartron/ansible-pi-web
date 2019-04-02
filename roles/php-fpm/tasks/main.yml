@@ -10,9 +10,9 @@
 #   become_method: sudo
 #   apt: update_cache=yes
 
-- name: Install PHP
-  become: yes
-  apt: name=php{{ php_version }} state=latest
+# - name: Install PHP
+#   become: yes
+#   apt: name=php{{ php_version }} state=latest #This installs apache2 by default we don't want that see https://packages.debian.org/stretch/php7.0 we install fpm already no need for this package
 
 - name: Install PHP Packages
   become: yes
