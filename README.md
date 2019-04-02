@@ -54,3 +54,4 @@ Edit `hosts` file with your desired hosts and your local sudo password to allow 
  - [ ] Add Laravel utils like generating app key, migrating database, ...
  - [ ] Add Adminer
  - [ ] Improve nginx server block template
+ - [ ] After testing raspbien stretch ships with php 7.0 which is not enough for laravel last version we will add to add the new repo to source.list >> buster
