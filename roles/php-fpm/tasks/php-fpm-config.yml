@@ -37,56 +37,56 @@
   lineinfile: dest=/etc/php/{{ php_version }}/fpm/php.ini
               regexp='session.cookie_httponly(\s)?='
               line='session.cookie_httponly=1'
-  notify: restart php-fpm
+  # notify: restart php-fpm
 
 - name: Enable session strict mode
   lineinfile: dest=/etc/php/{{ php_version }}/fpm/php.ini
               regexp='session.use_strict_mode(\s)?='
               line='session.use_strict_mode = 1'
-  notify: restart php-fpm
+  # notify: restart php-fpm
 
 - name: Disable url fopen
   lineinfile: dest=/etc/php/{{ php_version }}/fpm/php.ini
               regexp='allow_url_fopen(\s)?='
               line='allow_url_fopen = Off'
-  notify: restart php-fpm
+  # notify: restart php-fpm
 
 - name: Change soap.wsdl_cache_dir to new directory
   lineinfile: dest=/etc/php/{{ php_version }}/fpm/php.ini
               regexp='soap.wsdl_cache_dir(\s)?='
               line='soap.wsdl_cache_dir=/php/cache/wsdl'
-  notify: restart php-fpm
+  # notify: restart php-fpm
 
 - name: Change upload_tmp_dir path
   lineinfile: dest=/etc/php/{{ php_version }}/fpm/php.ini
               regexp='upload_tmp_dir(\s)?='
               line='upload_tmp_dir=/php/cache/upload_tmp'
-  notify: restart php-fpm
+  # notify: restart php-fpm
 
 - name: Exclude potentially harmfull php functions
   lineinfile: dest=/etc/php/{{ php_version }}/fpm/php.ini
               regexp='disable_functions(\s)?='
               line='disable_functions=exec,passthru,shell_exec,system,proc_open,popen'
-  notify: restart php-fpm
+  # notify: restart php-fpm
 
 - name: Set post_max_size
   lineinfile: dest=/etc/php/{{ php_version }}/fpm/php.ini
               regexp='post_max_size(\s)?='
               line='post_max_size = {{ php_post_max_size }}'
-  notify: restart php-fpm
+  # notify: restart php-fpm
 
 - name: Set upload_max_filesize
   lineinfile: dest=/etc/php/{{ php_version }}/fpm/php.ini
               regexp='upload_max_filesize(\s)?='
               line='upload_max_filesize = {{ php_upload_max_filesize }}'
               create=yes
-  notify: restart php-fpm
+  # notify: restart php-fpm
 
 - name: Set memory_limit
   lineinfile: dest=/etc/php/{{ php_version }}/fpm/php.ini
               regexp='memory_limit(\s)?='
               line='memory_limit = {{ php_memory_limit }}'
-  notify: restart php-fpm
+  # notify: restart php-fpm
 
 - name: Set max_execution_time
   lineinfile: dest=/etc/php/{{ php_version }}/fpm/php.ini
