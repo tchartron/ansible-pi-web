@@ -142,5 +142,5 @@
 #               line='opcache.fast_shutdown={{ php_opcache_fast_shutdown }}'
 #               insertafter="^[opcache]"
   notify:
-    - restart php-fpm
     - restart nginx
+    - restart php-fpm
