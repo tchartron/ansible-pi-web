@@ -2,8 +2,8 @@
 - name: Set up a raspberry pi to host php web apps
   hosts: web
   remote_user: pi
-  vars:
-    user: pi
+  # vars:
+    # user: pi #All vars moved to group_vars/all
     # php_version: "7.0" #now defined in group_vars
     # domains: #now defined in group_vars
     # - laravel.work

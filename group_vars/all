@@ -1,6 +1,5 @@
 #Domains var accessible by both 'web' group and 'local' group
+php_version: "7.3"
 domains:
   - domain: laravel.work
     php: yes
-php_version: "7.3"
-user: pi
