@@ -2,4 +2,4 @@
 domains:
   - domain: laravel.work
     php: yes
-php_version: "7.0"
+php_version: "7.3"

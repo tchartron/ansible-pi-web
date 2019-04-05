@@ -1,12 +1,13 @@
 ---
 #Can be overidden in a /vars/main.yml file in role or in /host_vars /group_vars or directly in vars section of playbook
 php_ppa: "ppa:ondrej/php"
-php_version: "7.0"
+# php_version: "7.0" #This have moved to group_vars/all
+# php_version: "7.3" #This have moved to group_vars/all
 php_packages:
   - php{{ php_version }}-common
   - php{{ php_version }}-cli
   - php{{ php_version }}-intl
-  - php{{ php_version }}-imagick
+  # - php{{ php_version }}-imagick
   - php{{ php_version }}-imap
   - php{{ php_version }}-curl
   - php{{ php_version }}-cgi
@@ -14,7 +15,7 @@ php_packages:
   - php{{ php_version }}-mysql
   - php{{ php_version }}-gd
   - php{{ php_version }}-mbstring
-  - php{{ php_version }}-mcrypt
+  # - php{{ php_version }}-mcrypt #Deprecated since php 7.2 removed
   - php{{ php_version }}-memcached
   - php{{ php_version }}-apcu
   - php{{ php_version }}-json

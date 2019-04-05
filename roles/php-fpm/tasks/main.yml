@@ -10,6 +10,52 @@
 #   become_method: sudo
 #   apt: update_cache=yes
 
+
+#Trick to add php 7.3 to raspbian stretch which comes with php 7.0 which is not enough for laravel last version
+
+#Stat to check if already exists
+- stat: path=/etc/apt/sources.list.d/10-buster.list
+  register: busterlist
+
+- name: Create the new source list for raspbian buster
+  become: yes
+  become_method: sudo
+  copy:
+    dest: "/etc/apt/sources.list.d/10-buster.list"
+    content: |
+      deb http://mirrordirector.raspbian.org/raspbian/ buster main contrib non-free rpi
+    owner: root
+    group: root
+    mode: 0644
+  when: not busterlist.stat.exists
+
+- stat: path=/etc/apt/sources.list.d/10-buster.list
+  register: busterpreference
+
+- name: Preference file for buster repository
+  become: yes
+  become_method: sudo
+  copy:
+    dest: "/etc/apt/preferences.d/10-buster"
+    content: |
+      Package: *
+      Pin: release n=stretch
+      Pin-Priority: 900
+
+      Package: *
+      Pin: release n=buster
+      Pin-Priority: 750
+      index f
+    owner: root
+    group: root
+    mode: 0644
+  when: not busterpreference.stat.exists
+
+- name: Update repositories cache
+  become: yes
+  become_method: sudo
+  apt: update_cache=yes
+
 # - name: Install PHP
 #   become: yes
 #   apt: name=php{{ php_version }} state=latest #This installs apache2 by default we don't want that see https://packages.debian.org/stretch/php7.0 we install fpm already no need for this package
