@@ -25,11 +25,14 @@
   #   chdir: /usr/bin/
   when: not composer.stat.exists
 
-# - name: example copying file with owner and permissions
-#   copy:
-#     src: /home/{{ user }}/composer
-#     dest: /etc/foo.conf
-#     owner: foo
-#     group: foo
-#     mode: 0644
-#   when: not composer.stat.exists
+- name: Copying composer binary to /usr/bin
+  become: yes
+  become_method: sudo
+  copy:
+    src: /home/{{ user }}/composer.phar
+    dest: /usr/bin/composer
+    remote_src: yes
+    owner: root
+    group: root
+    mode: 0755
+  when: not composer.stat.exists
