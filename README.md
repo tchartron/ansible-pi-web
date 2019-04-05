@@ -45,13 +45,14 @@ See the "Installed package section for details"
 Edit `hosts` file with your desired hosts and your local sudo password to allow editing the local /etc/hosts file to access nginx server block from the local host (the one that runs ansible playbook)
 
 ## Improvements ideas
- - [ ] Add option for which repo to pull
  - [ ] Add a laravel version option
  - [ ] Make it compatible with ArchLinux / Manjaro
  - [ ] Add option to wether use php or not (static website)
  - [ ] Add option to whether use mariaDB or not (static website)
- - [ ] Add composer installation tasks
+ - [X] Add composer installation tasks
  - [ ] Add Laravel utils like generating app key, migrating database, ...
  - [ ] Add Adminer
  - [ ] Improve nginx server block template
- - [ ] After testing raspbian stretch comes with php 7.0 which is not enough for laravel last version we will have to add the new repo to source.list >> buster
+ - [X] After testing raspbian stretch comes with php 7.0 which is not enough for laravel last version we will have to add the new repo to source.list >> buster
+ - [ ] Remove unnecessary become and become_method
+ - [ ] Clear vars
