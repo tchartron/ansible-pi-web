@@ -1,5 +1,3 @@
-user: pi
-php_version: "7.3"
 domains:
   - domain: laravel.work
     php: yes
