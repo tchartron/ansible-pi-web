@@ -1,8 +1,16 @@
 ---
 - name: Create user working folder
+  file: path=/home/{{ user }}/www/{{ item.domain }} state=directory owner={{ user }} group={{ user }}
+  when: item.repo is undefined
+
+- name: Repo is defined starting to deploy app from {{ item.repo }}
   become: yes
   become_method: sudo
-  file: path=/home/{{ user }}/www/{{ item.domain }} state=directory owner={{ user }} group={{ user }}
+  include: deploy.yml
+  with_items: "{{ domains }}"
+  loop_control:
+    loop_var: deploy_item
+  when: item.repo is defined
 
 - name: Symlink to www
   become: yes
