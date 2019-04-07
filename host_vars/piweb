@@ -4,3 +4,4 @@ domains:
   - domain: laravel.work
     php: yes
     repo: https://github.com/laravel/laravel.git
+    laravel: yes
