@@ -56,3 +56,8 @@ Edit `hosts` file with your desired hosts and your local sudo password to allow 
  - [X] After testing raspbian stretch comes with php 7.0 which is not enough for laravel last version we will have to add the new repo to source.list >> buster
  - [ ] Remove unnecessary become and become_method
  - [ ] Clear vars
+ - [ ] Don't use 'shell' module use 'command' instead
+ - [ ] Only do laravel basiv app setup if it has not already been done
+ - [ ] Add database setup in .env file and basic setup in deploy.yml to migrate database and seed
+ - [ ] Separate deploy logic at the end .. 
+
