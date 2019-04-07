@@ -10,13 +10,13 @@ See the "Installed package section for details"
     - SSH to the pi (with key authentification enabled)
     - Ansible
 
-## Installed packages
+## Installed
 ```shell
 - GIT
 - ZSH (and changed to default shell for user 'pi')
 - Oh My Zsh
-- Nginx
-- Php-fpm
+- Nginx (Option to deploy from a git repo)
+- Php-fpm (7.3)
 - MariaDB
 - Composer
 
@@ -24,7 +24,7 @@ See the "Installed package section for details"
     - common
     - cli
     - intl
-    - imagick
+    #- imagick
     - imap
     - curl
     - cgi
@@ -32,7 +32,7 @@ See the "Installed package section for details"
     - mysql
     - gd
     - mbstring
-    - mcrypt
+    #- mcrypt Deprecated not installed
     - memcached
     - apcu
     - json
