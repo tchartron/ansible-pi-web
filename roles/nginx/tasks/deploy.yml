@@ -1,3 +1,54 @@
 ---
 - name: Cloning the defined git repository {{ deploy_item.repo }}
   git: dest=/home/{{ user }}/www/{{ deploy_item.domain }} clone=yes repo={{ deploy_item.repo }}
+
+- name: Checking composer dependencies
+  stat: path=/home/{{ user }}/www/{{ deploy_item.domain }}/composer.json
+  register: composer_dep
+
+- name: Installing composer dependencies
+  command: composer install
+  args:
+    chdir: /home/{{ user }}/www/{{ deploy_item.domain }}
+  when: composer_dep.stat.exists
+
+# If laravel app we do the basic laravel app setup steps
+#composer install
+#chmod -R go+w storage bootstrap/cache
+#cp .env.example .env
+#php artisan key:generate
+- name: Setting the permissions on bootstrap/cache and storage
+  file:
+    path: /home/{{ user }}/www/{{ item }}
+    recurse: yes
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: "go+w"
+  with_items:
+    - bootstrap/cache
+    - storage
+  loop_control:
+    loop_var: dir_list
+  when: deploy_item.laravel
+
+- name: Copying .env.example to .env
+  copy:
+    src: /home/{{ user }}/www/{{ deploy_item.domain }}/.env.example
+    dest: /home/{{ user }}/www/{{ deploy_item.domain }}/.env
+    remote_src: yes
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0644
+  when: deploy_item.laravel
+
+- name: Generating app key
+  command: php artisan key:generate
+  args:
+    chdir: /home/{{ user }}/www/{{ deploy_item.domain }}
+  when: deploy_item.laravel
+
+- name: Clearing app cache
+  command: php artisan cache:clear
+  args:
+    chdir: /home/{{ user }}/www/{{ deploy_item.domain }}
+  when: deploy_item.laravel
