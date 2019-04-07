@@ -6,7 +6,11 @@ server {
 server {
     listen 80;
     server_name {{ item.domain }};
+    {% if item.laravel %}
+    root /var/www/{{ item.domain }}/public;
+    {% else %}
     root /var/www/{{ item.domain }};
+    {% endif %}
 
     {% if item.php %}
     index index.php index.html;
