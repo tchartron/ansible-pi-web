@@ -16,6 +16,22 @@
     - mariadb
     - composer
 
+  tasks:
+    - name: Restart nginx
+      become: yes
+      become_method: sudo
+      command: systemctl restart nginx.service
+
+    - name: Restart php-fpm
+      become: yes
+      become_method: sudo
+      command: systemctl restart php{{ php_version }}-fpm.service
+
+    # - name: Restart mariadb
+    #   become: yes
+    #   become_method: sudo
+    #   command: systemctl restart mariadb
+
 - name: Edit local hosts file for the domain to work
   hosts: localhost
 
