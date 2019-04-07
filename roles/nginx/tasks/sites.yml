@@ -21,13 +21,13 @@
   become: yes
   become_method: sudo
   template: src=templates/nginx.j2 dest=/etc/nginx/sites-available/{{ item.domain }} force=yes
-  notify: restart nginx
+#  notify: restart nginx
 
 - name: Activate domain {{ item.domain }}
   become: yes
   become_method: sudo
   file: src=/etc/nginx/sites-available/{{ item.domain }} dest=/etc/nginx/sites-enabled/{{ item.domain }} state=link
-  notify: restart nginx
+#  notify: restart nginx
 
 # Can't do this on local machine it will do it on connected host .... see later if it's possible ...
 # - name: Editing local hosts file to go to server (we'll see to use the dns to register the domain later)

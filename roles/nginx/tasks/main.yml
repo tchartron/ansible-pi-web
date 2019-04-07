@@ -20,5 +20,5 @@
   become_method: sudo
   include: sites.yml
   with_items: "{{ domains }}"
-  notify: restart nginx
+  # notify: restart nginx
 
