@@ -64,7 +64,7 @@ Run the playbook
  - [ ] Add laravel database basic setup (migrate, setup .env)
  - [ ] Add Adminer role
  - [ ] Improve nginx server block template
- - [X] After testing raspbian stretch comes with php 7.0 which is not enough for laravel last version we will have to add the new repo to source.list >> buster
+ - [X] Add raspbian buster source.list to get php last version
  - [ ] Remove unnecessary become and become_method
  - [ ] Don't use 'shell' module use 'command' instead
  - [ ] Only do laravel basic app setup if it has not already been done
