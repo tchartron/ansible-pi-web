@@ -3,21 +3,28 @@
 Ansible playbook to set up a Debian or Raspbian system to host web apps  
 Pulls the laravel repository to set up the new web app  
 See the "Installed package section for details"  
+Inspired and created thanks to lots of projects found on github.com
 
 ## Required
-    - A raspberry pi
-    - Raspbian stretch lite installed on a pi
-    - SSH to the pi (with key authentification enabled)
+    - Raspberry pi
+    - Raspbian stretch lite installed
+    - SSH to the pi, key authentication
     - Ansible
 
 ## Installed
 ```shell
 - GIT
-- ZSH (and changed to default shell for user 'pi')
+- ZSH
+    - ZSH as default shell for user 'pi'
 - Oh My Zsh
-- Nginx (Option to deploy from a git repo)
+- Nginx
+    - Server block configuration
+    - Clone a git repository in the working directory
+    - If laravel app, do the basic laravel app setup
 - Php-fpm (7.3)
 - MariaDB
+    - User creation
+    - App database creation
 - Composer
 
 - Default php packages list :
@@ -48,20 +55,18 @@ Run the playbook
 `ansible-playbook -i hosts playbook.yml`  
 
 ## Improvements ideas
- - [X] Add an option to auto deploy a git repo in app folder
+ - [X] Add an option to deploy a git repo in app folder
  - [ ] Make it compatible with ArchLinux and others
- - [X] Add option to wether use php or not (static website)
- - [ ] Add option to whether use mariaDB or not (static website)
+ - [X] Add option to use php or not (static website)
+ - [X] Add option to use mariaDB or not (static website)
  - [X] Add composer installation tasks
- - [X] Add Laravel basic setup : install dependencies, create .env file, generate app key, configure direcotries permissions
- - [ ] Add database handling laravel basic setup (migrate, setup .env with db connection)
- - [ ] Add Adminer
+ - [X] Add Laravel basic setup : install dependencies, create .env file, generate app key, configure directories permissions
+ - [ ] Add laravel database basic setup (migrate, setup .env)
+ - [ ] Add Adminer role
  - [ ] Improve nginx server block template
  - [X] After testing raspbian stretch comes with php 7.0 which is not enough for laravel last version we will have to add the new repo to source.list >> buster
  - [ ] Remove unnecessary become and become_method
- - [X] Clear vars
  - [ ] Don't use 'shell' module use 'command' instead
  - [ ] Only do laravel basic app setup if it has not already been done
- - [ ] Add database setup in .env file and basic setup in deploy.yml to migrate database and seed
  - [ ] Separate deploy logic at the end .. 
 
