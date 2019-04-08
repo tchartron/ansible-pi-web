@@ -14,6 +14,7 @@
   become: yes
   become_method: sudo
   apt: name=mariadb-server state=latest
+  when: mariadb
 
 #DONE DURING INSTALL IF NOT RETRY IT see https://wiki.archlinux.fr/MariaDB
 # - name: Initializes the MariaDB data directory and creates the system and help tables, if they do not exist.
@@ -25,6 +26,7 @@
   become: yes
   become_method: sudo
   service: name=mariadb state=started enabled=yes
+  when: mariadb
 
   #Install MySQLdb Python package for ansible to be able to run queries ansible is python
 - name: Adds Python MySQL support on Debian
@@ -32,6 +34,7 @@
   become_method: sudo
   apt: name=python-mysqldb state=latest
   when: ansible_os_family == 'Debian'
+  when: mariadb
 
   # Configuration secure installation
   # Reproducing sudo mysql_secure_installation
@@ -49,12 +52,14 @@
 
 - name: Create user and initialize app database
   include: db-config.yml
+  when: mariadb
 
 - name: Reload privilege tables (FLUSH PRIVILEGES)
   command: 'mariadb -u {{ mariadb_username }} -p{{ mariadb_password }} -ne "{{ item }}"'
   with_items:
     - FLUSH PRIVILEGES
   changed_when: False
+  when: mariadb
 
 # - name: Import existing dump if needed
 #   include: import-dump.yml

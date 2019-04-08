@@ -3,5 +3,6 @@ php_version: "7.3"
 domains:
   - domain: laravel.work
     php: yes
+    mariadb: yes
     repo: https://github.com/laravel/laravel.git
     laravel: yes
