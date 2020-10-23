@@ -56,17 +56,14 @@ Run the playbook
 
 ## Improvements ideas
  - [X] Add an option to deploy a git repo in app folder
- - [ ] Make it compatible with ArchLinux and others
  - [X] Add option to use php or not (static website)
  - [X] Add option to use mariaDB or not (static website)
  - [X] Add composer installation tasks
  - [X] Add Laravel basic setup : install dependencies, create .env file, generate app key, configure directories permissions
  - [ ] Add laravel database basic setup (migrate, setup .env)
- - [ ] Add Adminer role
  - [ ] Improve nginx server block template
  - [X] Add raspbian buster source.list to get php last version
  - [ ] Remove unnecessary become and become_method
  - [ ] Don't use 'shell' module use 'command' instead
  - [ ] Only do laravel basic app setup if it has not already been done
- - [ ] Separate deploy logic at the end .. 
 
